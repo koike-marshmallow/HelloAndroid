@@ -14,14 +14,50 @@
         android:layout_height="wrap_content"
         android:id="@+id/droidimageid1"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
+        android:layout_toLeftOf="@+id/droidimageid2"
         android:src="@drawable/star" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="スタート"
+        android:text="●"
         android:id="@+id/slotbutton1"
         android:layout_below="@+id/droidimageid1"
+        android:layout_alignLeft="@+id/droidimageid1"
+        android:layout_alignRight="@+id/droidimageid1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/droidimageid2"
+        android:src="@drawable/star"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="●"
+        android:id="@+id/slotbutton2"
+        android:layout_below="@+id/droidimageid2"
+        android:layout_alignLeft="@+id/droidimageid2"
+        android:layout_alignRight="@+id/droidimageid2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/droidimageid3"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/droidimageid2"
+        android:src="@drawable/star" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="●"
+        android:id="@+id/slotbutton3"
+        android:layout_below="@+id/droidimageid3"
+        android:layout_alignLeft="@+id/droidimageid3"
+        android:layout_alignRight="@+id/droidimageid3" />
+
 </RelativeLayout>
