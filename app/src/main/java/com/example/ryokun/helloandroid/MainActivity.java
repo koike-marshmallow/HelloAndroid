@@ -122,4 +122,19 @@ public class MainActivity extends AppCompatActivity{
             }
         });
     }
+
+    private int getDrawableUd(int side){
+        int drawableId;
+        switch( side ){
+            case 0:
+                drawableId = R.drawable.droid_front; break;
+            case 1:
+                drawableId = R.drawable.droid_back; break;
+            case 2:
+                drawableId = R.drawable.droid_left; break;
+            default:
+                drawableId = R.drawable.droid_right;
+        }
+        return drawableId;
+    }
 }
