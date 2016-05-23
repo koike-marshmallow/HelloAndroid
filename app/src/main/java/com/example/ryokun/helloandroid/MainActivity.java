@@ -10,6 +10,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity{
+    int droidSide1 = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity{
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                int droidSide1, drawableId;
+                int drawableId;
 
                 droidSide1 = r.nextInt(4);
                 switch( droidSide1 ){
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity{
                         drawableId = R.drawable.droid_right;
                 }
                 droidImage1.setImageResource(drawableId);
+                Toast.makeText(getApplicationContext(), Integer.toString(droidSide1), Toast.LENGTH_SHORT).show();
                 b1.setEnabled(false);
             }
         });
