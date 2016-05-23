@@ -10,6 +10,16 @@ import android.widget.Toast;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity{
+    int[] sideImage = {
+            R.drawable.droid_front,
+            R.drawable.droid_back,
+            R.drawable.droid_left,
+            R.drawable.droid_right
+    };
+    int defImage = R.drawable.star;
+
+    Button bRetry;
+
     int droidSide1 = -1;
     int droidSide2 = -1;
     int droidSide3 = -1;
@@ -26,7 +36,7 @@ public class MainActivity extends AppCompatActivity{
         final Button b1 = (Button) this.findViewById(R.id.slotbutton1);
         final Button b2 = (Button) this.findViewById(R.id.slotbutton2);
         final Button b3 = (Button) this.findViewById(R.id.slotbutton3);
-        final Button bRetry = (Button) this.findViewById(R.id.retrybutton);
+        bRetry = (Button) this.findViewById(R.id.retrybutton);
         final Random r = new Random();
 
         bRetry.setVisibility(View.INVISIBLE);
@@ -36,23 +46,8 @@ public class MainActivity extends AppCompatActivity{
                 int drawableId;
 
                 droidSide1 = r.nextInt(4);
-                switch( droidSide1 ){
-                    case 0:
-                        drawableId = R.drawable.droid_front; break;
-                    case 1:
-                        drawableId = R.drawable.droid_back; break;
-                    case 2:
-                        drawableId = R.drawable.droid_left; break;
-                    default:
-                        drawableId = R.drawable.droid_right;
-                }
-                droidImage1.setImageResource(drawableId);
-                if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
-                    Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
-                }
-                if( droidSide1 != -1 && droidSide2 != -1 && droidSide3 != -1 ){
-                    bRetry.setVisibility(View.VISIBLE);
-                }
+                droidImage1.setImageResource(getDrawableId(droidSide1));
+                checkState();
                 b1.setEnabled(false);
             }
         });
@@ -62,23 +57,8 @@ public class MainActivity extends AppCompatActivity{
                 int drawableId;
 
                 droidSide2 = r.nextInt(4);
-                switch( droidSide2 ){
-                    case 0:
-                        drawableId = R.drawable.droid_front; break;
-                    case 1:
-                        drawableId = R.drawable.droid_back; break;
-                    case 2:
-                        drawableId = R.drawable.droid_left; break;
-                    default:
-                        drawableId = R.drawable.droid_right;
-                }
-                droidImage2.setImageResource(drawableId);
-                if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
-                    Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
-                }
-                if( droidSide1 != -1 && droidSide2 != -1 && droidSide3 != -1 ){
-                    bRetry.setVisibility(View.VISIBLE);
-                }
+                droidImage2.setImageResource(getDrawableId(droidSide2));
+                checkState();
                 b2.setEnabled(false);
             }
         });
@@ -88,32 +68,17 @@ public class MainActivity extends AppCompatActivity{
                 int drawableId;
 
                 droidSide3 = r.nextInt(4);
-                switch( droidSide3 ){
-                    case 0:
-                        drawableId = R.drawable.droid_front; break;
-                    case 1:
-                        drawableId = R.drawable.droid_back; break;
-                    case 2:
-                        drawableId = R.drawable.droid_left; break;
-                    default:
-                        drawableId = R.drawable.droid_right;
-                }
-                droidImage3.setImageResource(drawableId);
-                if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
-                    Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
-                }
-                if( droidSide1 != -1 && droidSide2 != -1 && droidSide3 != -1 ){
-                    bRetry.setVisibility(View.VISIBLE);
-                }
+                droidImage3.setImageResource(getDrawableId(droidSide3));
+                checkState();
                 b3.setEnabled(false);
             }
         });
         bRetry.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                droidImage1.setImageResource(R.drawable.star);
-                droidImage2.setImageResource(R.drawable.star);
-                droidImage3.setImageResource(R.drawable.star);
+                droidImage1.setImageResource(defImage);
+                droidImage2.setImageResource(defImage);
+                droidImage3.setImageResource(defImage);
                 b1.setEnabled(true);
                 b2.setEnabled(true);
                 b3.setEnabled(true);
@@ -123,18 +88,20 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
-    private int getDrawableUd(int side){
-        int drawableId;
-        switch( side ){
-            case 0:
-                drawableId = R.drawable.droid_front; break;
-            case 1:
-                drawableId = R.drawable.droid_back; break;
-            case 2:
-                drawableId = R.drawable.droid_left; break;
-            default:
-                drawableId = R.drawable.droid_right;
+    private int getDrawableId(int side){
+        if( side >= 0 && side < sideImage.length ){
+            return sideImage[side];
+        }else{
+            return defImage;
         }
-        return drawableId;
+    }
+
+    private void checkState(){
+        if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
+            Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
+        }
+        if( droidSide1 != -1 && droidSide2 != -1 && droidSide3 != -1 ){
+            bRetry.setVisibility(View.VISIBLE);
+        }
     }
 }
