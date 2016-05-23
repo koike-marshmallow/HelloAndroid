@@ -5,10 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
         final ImageView droidImage1 = (ImageView)this.findViewById(R.id.droidimageid1);
         final Random r = new Random();
-        Button b1 = (Button) this.findViewById(R.id.slotbutton1);
+        final Button b1 = (Button) this.findViewById(R.id.slotbutton1);
+
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                         drawableId = R.drawable.droid_right;
                 }
                 droidImage1.setImageResource(drawableId);
+                b1.setEnabled(false);
             }
         });
     }
