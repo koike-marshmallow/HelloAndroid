@@ -18,11 +18,19 @@ public class MainActivity extends AppCompatActivity {
         int droidSide1;
         Random r = new Random();
 
-        droidSide1 = r.nextInt(2);
-        if( droidSide1 == 0 ){
-            droidImage1.setImageResource(R.drawable.droid_front);
-        }else{
-            droidImage1.setImageResource(R.drawable.droid_back);
+        droidSide1 = r.nextInt(4);
+        switch( droidSide1 ) {
+            case 0:
+                droidImage1.setImageResource(R.drawable.droid_front);
+                break;
+            case 1:
+                droidImage1.setImageResource(R.drawable.droid_back);
+                break;
+            case 2:
+                droidImage1.setImageResource(R.drawable.droid_left);
+                break;
+            default:
+                droidImage1.setImageResource(R.drawable.droid_right);
         }
     }
 }
