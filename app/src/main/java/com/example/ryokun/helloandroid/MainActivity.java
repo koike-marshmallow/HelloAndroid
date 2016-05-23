@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity{
         final Button b1 = (Button) this.findViewById(R.id.slotbutton1);
         final Button b2 = (Button) this.findViewById(R.id.slotbutton2);
         final Button b3 = (Button) this.findViewById(R.id.slotbutton3);
+        final Button bRetry = (Button) this.findViewById(R.id.retrybutton);
         final Random r = new Random();
 
+        bRetry.setVisibility(View.INVISIBLE);
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -47,6 +49,9 @@ public class MainActivity extends AppCompatActivity{
                 droidImage1.setImageResource(drawableId);
                 if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
                     Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
+                }
+                if( droidSide1 != -1 && droidSide2 != -1 && droidSide3 != -1 ){
+                    bRetry.setVisibility(View.VISIBLE);
                 }
                 b1.setEnabled(false);
             }
@@ -71,6 +76,9 @@ public class MainActivity extends AppCompatActivity{
                 if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
                     Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
                 }
+                if( droidSide1 != -1 && droidSide2 != -1 && droidSide3 != -1 ){
+                    bRetry.setVisibility(View.VISIBLE);
+                }
                 b2.setEnabled(false);
             }
         });
@@ -94,7 +102,23 @@ public class MainActivity extends AppCompatActivity{
                 if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
                     Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
                 }
+                if( droidSide1 != -1 && droidSide2 != -1 && droidSide3 != -1 ){
+                    bRetry.setVisibility(View.VISIBLE);
+                }
                 b3.setEnabled(false);
+            }
+        });
+        bRetry.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                droidImage1.setImageResource(R.drawable.star);
+                droidImage2.setImageResource(R.drawable.star);
+                droidImage3.setImageResource(R.drawable.star);
+                b1.setEnabled(true);
+                b2.setEnabled(true);
+                b3.setEnabled(true);
+                bRetry.setVisibility(View.INVISIBLE);
+                droidSide1 = droidSide2 = droidSide3 = -1;
             }
         });
     }

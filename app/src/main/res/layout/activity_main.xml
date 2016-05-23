@@ -60,4 +60,13 @@
         android:layout_alignLeft="@+id/droidimageid3"
         android:layout_alignRight="@+id/droidimageid3" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="もう一回!"
+        android:id="@+id/retrybutton"
+        android:layout_below="@+id/slotbutton2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
 </RelativeLayout>
