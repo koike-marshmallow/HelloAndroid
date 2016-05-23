@@ -45,7 +45,9 @@ public class MainActivity extends AppCompatActivity{
                         drawableId = R.drawable.droid_right;
                 }
                 droidImage1.setImageResource(drawableId);
-                Toast.makeText(getApplicationContext(), Integer.toString(droidSide1), Toast.LENGTH_SHORT).show();
+                if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
+                    Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
+                }
                 b1.setEnabled(false);
             }
         });
@@ -66,7 +68,9 @@ public class MainActivity extends AppCompatActivity{
                         drawableId = R.drawable.droid_right;
                 }
                 droidImage2.setImageResource(drawableId);
-                Toast.makeText(getApplicationContext(), Integer.toString(droidSide2), Toast.LENGTH_SHORT).show();
+                if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
+                    Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
+                }
                 b2.setEnabled(false);
             }
         });
@@ -87,7 +91,9 @@ public class MainActivity extends AppCompatActivity{
                         drawableId = R.drawable.droid_right;
                 }
                 droidImage3.setImageResource(drawableId);
-                Toast.makeText(getApplicationContext(), Integer.toString(droidSide3), Toast.LENGTH_SHORT).show();
+                if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
+                    Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
+                }
                 b3.setEnabled(false);
             }
         });
