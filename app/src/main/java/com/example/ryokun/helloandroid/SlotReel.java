@@ -17,7 +17,7 @@ public class SlotReel {
 
 
     public SlotReel(int c0, int i0, int g0){
-        gap = g0;
+        setGap(g0);
         setCount(c0);
         setInterval(i0);
         init();
@@ -36,8 +36,12 @@ public class SlotReel {
         stopTime = Calendar.getInstance().getTime();
     }
 
+    private void setGap(int g0){
+        gap = Math.max(g0, 0);
+    }
+
     public void init(int g0){
-        gap = g0;
+        setGap(g0);
         init();
     }
 
