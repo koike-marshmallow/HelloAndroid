@@ -19,6 +19,16 @@ public class ImageidSlotReel extends SlotReel{
         addSymbols(s0);
     }
 
+    public ImageidSlotReel(int gap) {
+        super(0, DEFAULT_INTERVAL, gap);
+        symbols = new ArrayList<Integer>();
+    }
+
+    public ImageidSlotReel(int[] s0, int gap){
+        this(gap);
+        addSymbols(s0);
+    }
+
     public void addSymbol(int iid){
         symbols.add(iid);
         setCount(symbols.size());

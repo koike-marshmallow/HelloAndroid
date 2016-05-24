@@ -18,11 +18,12 @@ public class MainActivity extends AppCompatActivity{
     };
     int defImage = R.drawable.star;
 
+    ImageView droidImage1, droidImage2, droidImage3;
+    Button b1, b2, b3;
     Button bRetry;
 
-    int droidSide1 = -1;
-    int droidSide2 = -1;
-    int droidSide3 = -1;
+    ImageidSlotReel droidSide1, droidSide2, droidSide3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +31,19 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         this.setTitle("DroidSlot");
 
-        final ImageView droidImage1 = (ImageView)this.findViewById(R.id.droidimageid1);
-        final ImageView droidImage2 = (ImageView)this.findViewById(R.id.droidimageid2);
-        final ImageView droidImage3 = (ImageView)this.findViewById(R.id.droidimageid3);
-        final Button b1 = (Button) this.findViewById(R.id.slotbutton1);
-        final Button b2 = (Button) this.findViewById(R.id.slotbutton2);
-        final Button b3 = (Button) this.findViewById(R.id.slotbutton3);
+        droidImage1 = (ImageView)this.findViewById(R.id.droidimageid1);
+        droidImage2 = (ImageView)this.findViewById(R.id.droidimageid2);
+        droidImage3 = (ImageView)this.findViewById(R.id.droidimageid3);
+        b1 = (Button) this.findViewById(R.id.slotbutton1);
+        b2 = (Button) this.findViewById(R.id.slotbutton2);
+        b3 = (Button) this.findViewById(R.id.slotbutton3);
         bRetry = (Button) this.findViewById(R.id.retrybutton);
         final Random r = new Random();
+        droidSide1 = new ImageidSlotReel(sideImage, r.nextInt());
+        droidSide2 = new ImageidSlotReel(sideImage, r.nextInt());
+        droidSide3 = new ImageidSlotReel(sideImage, r.nextInt());
 
-        bRetry.setVisibility(View.INVISIBLE);
+        bRetry.setEnabled(false);
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

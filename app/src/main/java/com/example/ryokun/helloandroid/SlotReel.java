@@ -13,12 +13,18 @@ public class SlotReel {
     Date stopTime;
     int count;
     int interval;
+    int gap;
 
 
-    public SlotReel(int c0, int i0){
+    public SlotReel(int c0, int i0, int g0){
+        gap = g0;
         setCount(c0);
         setInterval(i0);
         init();
+    }
+
+    public SlotReel(int c0, int i0){
+        this(c0, i0, 0);
     }
 
     public SlotReel(int c0){
@@ -28,6 +34,11 @@ public class SlotReel {
     public void init(){
         startTime = Calendar.getInstance().getTime();
         stopTime = Calendar.getInstance().getTime();
+    }
+
+    public void init(int g0){
+        gap = g0;
+        init();
     }
 
     public boolean isRotate(){
@@ -60,7 +71,7 @@ public class SlotReel {
         }
 
         long diff = ti.getTime() - startTime.getTime();
-        return (int)((diff / interval) % count);
+        return (int)(((diff / interval) + gap) % count);
     }
 
     public void setInterval(int i0){
