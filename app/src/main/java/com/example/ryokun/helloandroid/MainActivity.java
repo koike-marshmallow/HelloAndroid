@@ -10,9 +10,20 @@ import android.widget.Toast;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity{
-    int droidSide1 = -1;
-    int droidSide2 = -1;
-    int droidSide3 = -1;
+    int[] sideImage = {
+            R.drawable.droid_front,
+            R.drawable.droid_back,
+            R.drawable.droid_left,
+            R.drawable.droid_right
+    };
+    int defImage = R.drawable.star;
+
+    ImageView droidImage1, droidImage2, droidImage3;
+    Button b1, b2, b3;
+    Button bRetry;
+
+    ImageidSlotReel droidSide1, droidSide2, droidSide3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,121 +31,75 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         this.setTitle("DroidSlot");
 
-        final ImageView droidImage1 = (ImageView)this.findViewById(R.id.droidimageid1);
-        final ImageView droidImage2 = (ImageView)this.findViewById(R.id.droidimageid2);
-        final ImageView droidImage3 = (ImageView)this.findViewById(R.id.droidimageid3);
-        final Button b1 = (Button) this.findViewById(R.id.slotbutton1);
-        final Button b2 = (Button) this.findViewById(R.id.slotbutton2);
-        final Button b3 = (Button) this.findViewById(R.id.slotbutton3);
-        final Button bRetry = (Button) this.findViewById(R.id.retrybutton);
+        droidImage1 = (ImageView)this.findViewById(R.id.droidimageid1);
+        droidImage2 = (ImageView)this.findViewById(R.id.droidimageid2);
+        droidImage3 = (ImageView)this.findViewById(R.id.droidimageid3);
+        b1 = (Button) this.findViewById(R.id.slotbutton1);
+        b2 = (Button) this.findViewById(R.id.slotbutton2);
+        b3 = (Button) this.findViewById(R.id.slotbutton3);
+        bRetry = (Button) this.findViewById(R.id.retrybutton);
         final Random r = new Random();
+        droidSide1 = new ImageidSlotReel(sideImage, r.nextInt(4));
+        droidSide2 = new ImageidSlotReel(sideImage, r.nextInt(4));
+        droidSide3 = new ImageidSlotReel(sideImage, r.nextInt(4));
 
-        bRetry.setVisibility(View.INVISIBLE);
+        bRetry.setEnabled(true);
+        initGame();
         b1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                int drawableId;
-
-                droidSide1 = r.nextInt(4);
-                switch( droidSide1 ){
-                    case 0:
-                        drawableId = R.drawable.droid_front; break;
-                    case 1:
-                        drawableId = R.drawable.droid_back; break;
-                    case 2:
-                        drawableId = R.drawable.droid_left; break;
-                    default:
-                        drawableId = R.drawable.droid_right;
-                }
-                droidImage1.setImageResource(drawableId);
-                if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
-                    Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
-                }
-                if( droidSide1 != -1 && droidSide2 != -1 && droidSide3 != -1 ){
-                    bRetry.setVisibility(View.VISIBLE);
-                }
+                droidSide1.stop();
+                droidImage1.setImageResource(droidSide1.getSymbolId());
+                checkState();
                 b1.setEnabled(false);
             }
         });
         b2.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                int drawableId;
-
-                droidSide2 = r.nextInt(4);
-                switch( droidSide2 ){
-                    case 0:
-                        drawableId = R.drawable.droid_front; break;
-                    case 1:
-                        drawableId = R.drawable.droid_back; break;
-                    case 2:
-                        drawableId = R.drawable.droid_left; break;
-                    default:
-                        drawableId = R.drawable.droid_right;
-                }
-                droidImage2.setImageResource(drawableId);
-                if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
-                    Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
-                }
-                if( droidSide1 != -1 && droidSide2 != -1 && droidSide3 != -1 ){
-                    bRetry.setVisibility(View.VISIBLE);
-                }
+                droidSide2.stop();
+                droidImage2.setImageResource(droidSide2.getSymbolId());
+                checkState();
                 b2.setEnabled(false);
             }
         });
         b3.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                int drawableId;
-
-                droidSide3 = r.nextInt(4);
-                switch( droidSide3 ){
-                    case 0:
-                        drawableId = R.drawable.droid_front; break;
-                    case 1:
-                        drawableId = R.drawable.droid_back; break;
-                    case 2:
-                        drawableId = R.drawable.droid_left; break;
-                    default:
-                        drawableId = R.drawable.droid_right;
-                }
-                droidImage3.setImageResource(drawableId);
-                if( droidSide1 == droidSide2 && droidSide2 == droidSide3 ){
-                    Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
-                }
-                if( droidSide1 != -1 && droidSide2 != -1 && droidSide3 != -1 ){
-                    bRetry.setVisibility(View.VISIBLE);
-                }
+                droidSide3.stop();
+                droidImage3.setImageResource(droidSide3.getSymbolId());
+                checkState();
                 b3.setEnabled(false);
             }
         });
         bRetry.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                droidImage1.setImageResource(R.drawable.star);
-                droidImage2.setImageResource(R.drawable.star);
-                droidImage3.setImageResource(R.drawable.star);
-                b1.setEnabled(true);
-                b2.setEnabled(true);
-                b3.setEnabled(true);
-                bRetry.setVisibility(View.INVISIBLE);
-                droidSide1 = droidSide2 = droidSide3 = -1;
+                initGame();
             }
         });
     }
 
-    private int getDrawableUd(int side){
-        int drawableId;
-        switch( side ){
-            case 0:
-                drawableId = R.drawable.droid_front; break;
-            case 1:
-                drawableId = R.drawable.droid_back; break;
-            case 2:
-                drawableId = R.drawable.droid_left; break;
-            default:
-                drawableId = R.drawable.droid_right;
+    private void initGame(){
+        droidImage1.setImageResource(defImage);
+        droidSide1.start();
+        b1.setEnabled(true);
+        droidImage2.setImageResource(defImage);
+        droidSide2.start();
+        b2.setEnabled(true);
+        droidImage3.setImageResource(defImage);
+        droidSide3.start();
+        b3.setEnabled(true);
+        bRetry.setVisibility(View.INVISIBLE);
+    }
+
+    private void checkState(){
+        System.out.println(droidSide1.isRotate() + ","+ droidSide2.isRotate() + "," + droidSide3.isRotate());
+        if( droidSide1.getValue() == droidSide2.getValue() && droidSide2.getValue() == droidSide3.getValue() ){
+            Toast.makeText(getApplicationContext(), "おめでとう 揃いました", Toast.LENGTH_SHORT).show();
+            bRetry.setVisibility(View.VISIBLE);
+        }else if( !droidSide1.isRotate() && !droidSide2.isRotate() && !droidSide3.isRotate() ){
+            bRetry.setVisibility(View.VISIBLE);
         }
-        return drawableId;
     }
 }
